@@ -15,7 +15,7 @@ Each agent is one CDS service:
 | Discovery document Epic fetches | `cds-services.json` |
 | One service definition plus the system prompt | `standards/NN-slug/agent.json` |
 | The same contract, readable | `standards/NN-slug/AGENT.md` |
-| The clinical source the prompt is bound to | `clinical-standards/*.pdf` |
+| The clinical source the prompt is bound to | a local PDF in `clinical-standards/`, named in `manifest.csv`. The PDFs are not stored in git. |
 | Loader that puts the PDF text into a model call | `runtime/knowledge.py` |
 | Local wiring server | `runtime/serve.py` |
 
