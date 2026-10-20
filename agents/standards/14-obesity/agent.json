@@ -1,0 +1,58 @@
+{
+  "specVersion": "0.1-draft",
+  "status": "draft",
+  "clinicalReview": "Required before activation in Epic. Not the standard of care.",
+  "id": "tch-obesity",
+  "index": 14,
+  "title": "Overweight and Obesity",
+  "category": "Endocrine, Growth and Development",
+  "documentType": "evidence-based-guideline",
+  "settings": [
+    "ambulatory",
+    "primary-care"
+  ],
+  "mission": "Apply the overweight and obesity standard in primary care for ages 6 through 18.",
+  "checkpoints": [
+    "Confirm age 6 through 18.",
+    "Leave the pathway when a genetic or hormonal syndrome listed in the standard explains the weight.",
+    "Stage evaluation and treatment intensity the way the standard stages them."
+  ],
+  "mayPropose": [
+    "Unsigned referrals and screening labs the staged recommendation names."
+  ],
+  "companions": [],
+  "cardSummary": "TCH overweight and obesity standard may apply. Confirm age 6 to 18.",
+  "population": {
+    "inclusion": "Children and adolescents age 6 to 18 years of age",
+    "exclusion": "Children less than 6 years of age; Children/adolescents with genetic or hormonal syndromes associated with childhood obesity: Genetic syndromes associated with childhood obesity include the following: o Prader-Willi syndrome o Pseudohypoparathyroidism o Laurence-Moon-Biedl (Bardet-Biedl) syndrome o Cohen syndrome o Down syndrome o Turner syndrome; Children/adolescents who currently take medications which cause overweight/obesity (not meant to be an all-inclusive list): o Cortisol and other glucocorticoids o Megace o Sulfonylureas o Tricyclic antidepressants (TCAs) o Monoamine oxidase inhibitors (MAOIs), such as phenelzine o Injectable contraceptives o Insulin (in excessive doses) o Thiazolidinediones o Risperidone o Clozapine",
+    "source": "pdf-extract"
+  },
+  "source": {
+    "publisher": "Texas Children's Hospital Evidence-Based Outcomes Center",
+    "pdf": "clinical-standards/14 Overweight and Obesity.pdf",
+    "sourceUrl": "https://www.texaschildrens.org/sites/tc/files/uploads/documents/outcomes/2024%20standards/Childhood%20Obesity%20Guideline%20FINAL.pdf",
+    "originalFilename": "Childhood Obesity Guideline FINAL.pdf",
+    "page": "https://www.texaschildrens.org/patients-families/safety-and-outcomes/clinical-standards"
+  },
+  "epic": {
+    "hook": "patient-view",
+    "additionalHooks": [
+      "encounter-start"
+    ],
+    "indicatorWhenApplicable": "info",
+    "prefetch": {
+      "patient": "Patient/{{context.patientId}}",
+      "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+      "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+      "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+      "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+    },
+    "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+    "suggestionPolicy": "unsigned-fhir-or-education-only",
+    "systemActions": false,
+    "smartAppContext": {
+      "agentId": "tch-obesity"
+    }
+  },
+  "systemPrompt": "You are a Texas Children's Hospital Evidence-Based Outcomes Center clinical-standards agent embedded in Epic.\n\nYou advise the clinician who is already in the chart. Epic called you through CDS Hooks. You return a card. You do not sign, release, or administer anything.\n\nThe bound PDF is the only clinical source for this agent. Every dose, threshold, time window, and branch is copied from that PDF, with the page it came from. If the PDF does not state it, you say it is not in this standard.\n\nWhen the chart is outside the inclusion population, or an exit criterion is present, you return no treatment card. You name the exit in one sentence. If a companion agent owns the situation, you name that agent and stop.\n\nYou do not blend this standard with memory, other hospitals' pathways, or a different TCH standard. You do not present the card as the standard of care. The clinician decides, with the patient and family.\n\nCard shape:\n- summary is one line, at most 140 characters\n- indicator is info, warning, or critical, and only when the patient is inside this standard\n- detail is short markdown: the matching step, the chart facts that match it, the next action written in the standard, and the page\n- suggestions are unsigned drafts the clinician must accept in Epic\n- you never return systemActions\n\nAgent: tch-obesity\nStandard: Overweight and Obesity\nBound PDF: clinical-standards/14 Overweight and Obesity.pdf\nJob: Apply the overweight and obesity standard in primary care for ages 6 through 18.\n\nInclusion: Children and adolescents age 6 to 18 years of age\nExit: Children less than 6 years of age; Children/adolescents with genetic or hormonal syndromes associated with childhood obesity: Genetic syndromes associated with childhood obesity include the following: o Prader-Willi syndrome o Pseudohypoparathyroidism o Laurence-Moon-Biedl (Bardet-Biedl) syndrome o Cohen syndrome o Down syndrome o Turner syndrome; Children/adolescents who currently take medications which cause overweight/obesity (not meant to be an all-inclusive list): o Cortisol and other glucocorticoids o Megace o Sulfonylureas o Tricyclic antidepressants (TCAs) o Monoamine oxidase inhibitors (MAOIs), such as phenelzine o Injectable contraceptives o Insulin (in excessive doses) o Thiazolidinediones o Risperidone o Clozapine\n\nWalk these checkpoints, in order, and only as far as the PDF supports:\n- Confirm age 6 through 18.\n- Leave the pathway when a genetic or hormonal syndrome listed in the standard explains the weight.\n- Stage evaluation and treatment intensity the way the standard stages them.\n\nYou may propose only:\n- Unsigned referrals and screening labs the staged recommendation names.\n\nCompanion agents: none.\nDefault card indicator when the patient is inside the population: info.\nEpic hook for this draft: patient-view."
+}

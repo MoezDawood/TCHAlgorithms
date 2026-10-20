@@ -1,0 +1,488 @@
+[
+  {
+    "index": 1,
+    "id": "tch-adhd-screening",
+    "title": "Attention-Deficit Hyperactivity Disorder (ADHD): Screening and Diagnosis",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/01-adhd-screening"
+  },
+  {
+    "index": 2,
+    "id": "tch-autism-screening",
+    "title": "Autism Spectrum Disorder: Screening and Diagnosis",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/02-autism-screening"
+  },
+  {
+    "index": 3,
+    "id": "tch-kawasaki",
+    "title": "Kawasaki Disease: Diagnosis and Management",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/03-kawasaki"
+  },
+  {
+    "index": 4,
+    "id": "tch-arterial-thrombosis",
+    "title": "Vascular Thrombosis: Arterial Thrombosis",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/04-arterial-thrombosis"
+  },
+  {
+    "index": 5,
+    "id": "tch-venous-thrombosis",
+    "title": "Vascular Thrombosis: Venous Thrombosis",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/05-venous-thrombosis"
+  },
+  {
+    "index": 6,
+    "id": "tch-stroke-guideline",
+    "title": "Acute Ischemic Stroke",
+    "hook": "patient-view",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/06-stroke-guideline"
+  },
+  {
+    "index": 7,
+    "id": "tch-stroke-houston",
+    "title": "Houston Algorithm",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "algorithm",
+    "path": "agents/standards/07-stroke-houston"
+  },
+  {
+    "index": 8,
+    "id": "tch-stroke-austin",
+    "title": "Austin Algorithm",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "algorithm",
+    "path": "agents/standards/08-stroke-austin"
+  },
+  {
+    "index": 9,
+    "id": "tch-gastroenteritis",
+    "title": "Gastroenteritis (Acute Vomiting and/or Diarrhea)",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/09-gastroenteritis"
+  },
+  {
+    "index": 10,
+    "id": "tch-cgm-type1",
+    "title": "Diabetes: Continuous Glucose Monitoring in Type 1 Diabetes Mellitus",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/10-cgm-type1"
+  },
+  {
+    "index": 11,
+    "id": "tch-dka",
+    "title": "Diabetes: Diabetic Ketoacidosis (DKA)",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/11-dka"
+  },
+  {
+    "index": 12,
+    "id": "tch-hhs",
+    "title": "Diabetes: Hyperglycemic Hyperosmolar State [with or without DKA]",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/12-hhs"
+  },
+  {
+    "index": 13,
+    "id": "tch-diabetes-periop",
+    "title": "Diabetes: Perioperative Management",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/13-diabetes-periop"
+  },
+  {
+    "index": 14,
+    "id": "tch-obesity",
+    "title": "Overweight and Obesity",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/14-obesity"
+  },
+  {
+    "index": 15,
+    "id": "tch-thyroid-carcinoma-periop",
+    "title": "Thyroid Carcinoma (Well-Differentiated): Perioperative Management",
+    "hook": "encounter-start",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/15-thyroid-carcinoma-periop"
+  },
+  {
+    "index": 16,
+    "id": "tch-first-febrile-uti",
+    "title": "Urinary Tract Infection, First Febrile",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/16-first-febrile-uti"
+  },
+  {
+    "index": 17,
+    "id": "tch-malnutrition",
+    "title": "Malnutrition (formerly Failure to Thrive)",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/17-malnutrition"
+  },
+  {
+    "index": 18,
+    "id": "tch-rbc-transfusion",
+    "title": "Red Blood Cell Transfusions",
+    "hook": "order-select",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/18-rbc-transfusion"
+  },
+  {
+    "index": 19,
+    "id": "tch-scd-pain",
+    "title": "Sickle Cell Disease Management of Acute and Chronic Pain",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/19-scd-pain"
+  },
+  {
+    "index": 20,
+    "id": "tch-scd-acute-chest",
+    "title": "Sickle Cell Disease and Acute Chest Syndrome",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/20-scd-acute-chest"
+  },
+  {
+    "index": 21,
+    "id": "tch-scd-fever",
+    "title": "Sickle Cell Disease With Fever",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/21-scd-fever"
+  },
+  {
+    "index": 22,
+    "id": "tch-clabsi-diagnosis",
+    "title": "Diagnosis and Management of Suspected Central Line-Associated Bloodstream Infections (CLABSI)",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/22-clabsi-diagnosis"
+  },
+  {
+    "index": 23,
+    "id": "tch-clabsi-prevention",
+    "title": "Central Line-Associated Bloodstream Infection (CLABSI) Prevention Guideline",
+    "hook": "order-select",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/23-clabsi-prevention"
+  },
+  {
+    "index": 24,
+    "id": "tch-covid-inpatient",
+    "title": "Care of the Hospitalized Patient with COVID-19",
+    "hook": "patient-view",
+    "indicator": "warning",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/24-covid-inpatient"
+  },
+  {
+    "index": 25,
+    "id": "tch-fever-0-60-days",
+    "title": "Fever Without Localizing Signs, 0-60 Days",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/25-fever-0-60-days"
+  },
+  {
+    "index": 26,
+    "id": "tch-fever-2-36-months",
+    "title": "Fever Without Localizing Signs, 2-36 Months",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/26-fever-2-36-months"
+  },
+  {
+    "index": 27,
+    "id": "tch-osteo-septic-arthritis",
+    "title": "Osteomyelitis, Acute Hematogenous (AHO) and/or Septic Arthritis",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/27-osteo-septic-arthritis"
+  },
+  {
+    "index": 28,
+    "id": "tch-septic-shock",
+    "title": "Septic Shock: Recognition and Initial Management",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/28-septic-shock"
+  },
+  {
+    "index": 29,
+    "id": "tch-ssti",
+    "title": "Skin and Soft Tissue Infection/Abscess",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/29-ssti"
+  },
+  {
+    "index": 30,
+    "id": "tch-artificial-airway",
+    "title": "Management of Respiratory Symptoms and Possible Infectious Complications in Patients with an Artificial Airway",
+    "hook": "patient-view",
+    "indicator": "warning",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/30-artificial-airway"
+  },
+  {
+    "index": 31,
+    "id": "tch-ketamine-analgesia",
+    "title": "Ketamine Subanesthetic Intravenous Infusions for Analgesia",
+    "hook": "order-select",
+    "indicator": "warning",
+    "documentType": "evidence-summary",
+    "path": "agents/standards/31-ketamine-analgesia"
+  },
+  {
+    "index": 32,
+    "id": "tch-procedural-sedation",
+    "title": "Procedural Sedation",
+    "hook": "order-select",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/32-procedural-sedation"
+  },
+  {
+    "index": 33,
+    "id": "tch-wounds",
+    "title": "Management of Acute and Chronic Wounds",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/33-wounds"
+  },
+  {
+    "index": 34,
+    "id": "tch-spinal-instrumentation",
+    "title": "Spinal Instrumentation: Intraoperative Infection Prevention",
+    "hook": "encounter-start",
+    "indicator": "info",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/34-spinal-instrumentation"
+  },
+  {
+    "index": 35,
+    "id": "tch-hyperbilirubinemia",
+    "title": "Hyperbilirubinemia",
+    "hook": "patient-view",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/35-hyperbilirubinemia"
+  },
+  {
+    "index": 36,
+    "id": "tch-migraine-ec",
+    "title": "Migraine Headaches: Treatment in the EC",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-summary",
+    "path": "agents/standards/36-migraine-ec"
+  },
+  {
+    "index": 37,
+    "id": "tch-status-epilepticus",
+    "title": "Status Epilepticus: Initial Management",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/37-status-epilepticus"
+  },
+  {
+    "index": 38,
+    "id": "tch-closed-head-injury",
+    "title": "Closed Head Injury: Initial Assessment in the Emergency Center",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-summary",
+    "path": "agents/standards/38-closed-head-injury"
+  },
+  {
+    "index": 39,
+    "id": "tch-concussion",
+    "title": "Evaluation and Management of Pediatric Concussion",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/39-concussion"
+  },
+  {
+    "index": 40,
+    "id": "tch-severe-tbi",
+    "title": "Traumatic Brain Injury, Severe",
+    "hook": "encounter-start",
+    "indicator": "critical",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/40-severe-tbi"
+  },
+  {
+    "index": 41,
+    "id": "tch-appendicitis",
+    "title": "Acute Appendicitis/Appendectomy",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/41-appendicitis"
+  },
+  {
+    "index": 42,
+    "id": "tch-craniosynostosis-preop",
+    "title": "Craniosynostosis (Primary Repair): Preoperative Management of Patients",
+    "hook": "encounter-start",
+    "indicator": "info",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/42-craniosynostosis-preop"
+  },
+  {
+    "index": 43,
+    "id": "tch-spontaneous-pneumothorax",
+    "title": "Pneumothorax, Primary Spontaneous",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/43-spontaneous-pneumothorax"
+  },
+  {
+    "index": 44,
+    "id": "tch-tonsillectomy",
+    "title": "Tonsillectomy & Adenoidectomy: Perioperative Medical Management",
+    "hook": "encounter-start",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/44-tonsillectomy"
+  },
+  {
+    "index": 45,
+    "id": "tch-asthma-acute",
+    "title": "Asthma: Acute Exacerbations",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/45-asthma-acute"
+  },
+  {
+    "index": 46,
+    "id": "tch-asthma-chronic",
+    "title": "Asthma: Chronic Management",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/46-asthma-chronic"
+  },
+  {
+    "index": 47,
+    "id": "tch-brue",
+    "title": "Brief Resolved Unexplained Event",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/47-brue"
+  },
+  {
+    "index": 48,
+    "id": "tch-brue-handout-en",
+    "title": "Parent Information Sheet",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "patient-education",
+    "path": "agents/standards/48-brue-handout-en"
+  },
+  {
+    "index": 49,
+    "id": "tch-brue-handout-es",
+    "title": "En Espa\u00f1ol",
+    "hook": "patient-view",
+    "indicator": "info",
+    "documentType": "patient-education",
+    "path": "agents/standards/49-brue-handout-es"
+  },
+  {
+    "index": 50,
+    "id": "tch-bronchiolitis",
+    "title": "Bronchiolitis",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/50-bronchiolitis"
+  },
+  {
+    "index": 51,
+    "id": "tch-croup",
+    "title": "Croup",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/51-croup"
+  },
+  {
+    "index": 52,
+    "id": "tch-cap",
+    "title": "Community-Acquired Pneumonia",
+    "hook": "encounter-start",
+    "indicator": "warning",
+    "documentType": "evidence-based-guideline",
+    "path": "agents/standards/52-cap"
+  },
+  {
+    "index": 53,
+    "id": "tch-hfnc",
+    "title": "High Flow Nasal Cannula Therapy: Initiation and Escalation for Respiratory Distress",
+    "hook": "order-select",
+    "indicator": "warning",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/53-hfnc"
+  },
+  {
+    "index": 54,
+    "id": "tch-oxygen-weaning",
+    "title": "Oxygen Weaning Protocol",
+    "hook": "order-select",
+    "indicator": "info",
+    "documentType": "evidence-informed-pathway",
+    "path": "agents/standards/54-oxygen-weaning"
+  }
+]

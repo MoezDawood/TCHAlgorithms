@@ -1,0 +1,844 @@
+{
+  "services": [
+    {
+      "hook": "patient-view",
+      "id": "tch-adhd-screening",
+      "title": "TCH Attention-Deficit Hyperactivity Disorder (ADHD): Screening and Diagnosis",
+      "description": "Help the clinician apply the TCH screening and diagnosis standard before an ADHD diagnosis or a treatment plan is recorded.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-autism-screening",
+      "title": "TCH Autism Spectrum Disorder: Screening and Diagnosis",
+      "description": "Walk developmental screening and the referral path for suspected or diagnosed autism.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-kawasaki",
+      "title": "TCH Kawasaki Disease: Diagnosis and Management",
+      "description": "In prolonged fever, decide whether the Kawasaki pathway applies and which phase of the algorithm the patient is in.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-arterial-thrombosis",
+      "title": "TCH Vascular Thrombosis: Arterial Thrombosis",
+      "description": "Guide care of extremity arterial thrombosis and stop when the clot is outside that population.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-venous-thrombosis",
+      "title": "TCH Vascular Thrombosis: Venous Thrombosis",
+      "description": "Guide evaluation of suspected venous thrombosis in patients 21 years and younger.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-stroke-guideline",
+      "title": "TCH Acute Ischemic Stroke",
+      "description": "Answer evidence questions about pediatric acute ischemic stroke, and send the first day of workflow to the campus algorithm agent.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-stroke-houston",
+      "title": "TCH Houston Algorithm",
+      "description": "Run the Houston campus algorithm for the first 24 hours after onset of suspected acute arterial ischemic stroke.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-stroke-austin",
+      "title": "TCH Austin Algorithm",
+      "description": "Run the Austin campus algorithm for the first 24 hours after onset of suspected acute arterial ischemic stroke.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-gastroenteritis",
+      "title": "TCH Gastroenteritis (Acute Vomiting and/or Diarrhea)",
+      "description": "Walk acute vomiting and diarrhea care for previously healthy children from 60 days to 17 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-cgm-type1",
+      "title": "TCH Diabetes: Continuous Glucose Monitoring in Type 1 Diabetes Mellitus",
+      "description": "Support continuous glucose monitoring decisions for children with type 1 diabetes.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-dka",
+      "title": "TCH Diabetes: Diabetic Ketoacidosis (DKA)",
+      "description": "Recognize diabetic ketoacidosis and walk initial management for ages 6 months through 21 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-hhs",
+      "title": "TCH Diabetes: Hyperglycemic Hyperosmolar State [with or without DKA]",
+      "description": "Separate hyperglycemic hyperosmolar state, with or without DKA, from isolated DKA.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-diabetes-periop",
+      "title": "TCH Diabetes: Perioperative Management",
+      "description": "Plan perioperative diabetes care for elective surgery when metabolic control meets the standard.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-obesity",
+      "title": "TCH Overweight and Obesity",
+      "description": "Apply the overweight and obesity standard in primary care for ages 6 through 18.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-thyroid-carcinoma-periop",
+      "title": "TCH Thyroid Carcinoma (Well-Differentiated): Perioperative Management",
+      "description": "Preoperative path for biopsy-proven well-differentiated thyroid carcinoma without known locoregional metastasis, from birth through 25 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-first-febrile-uti",
+      "title": "TCH Urinary Tract Infection, First Febrile",
+      "description": "Walk the first febrile urinary tract infection in prepubertal children from 1 month through 12 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-malnutrition",
+      "title": "TCH Malnutrition (formerly Failure to Thrive)",
+      "description": "Inpatient pathway for children under 24 months admitted with malnutrition.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-rbc-transfusion",
+      "title": "TCH Red Blood Cell Transfusions",
+      "description": "At red-cell order time, compare the order with the stable-child transfusion standard.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-scd-pain",
+      "title": "TCH Sickle Cell Disease Management of Acute and Chronic Pain",
+      "description": "Walk acute and chronic sickle cell pain, and leave immediately if stroke signs are present.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-scd-acute-chest",
+      "title": "TCH Sickle Cell Disease and Acute Chest Syndrome",
+      "description": "Walk acute chest syndrome in sickle cell disease, and leave immediately if stroke signs are present.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-scd-fever",
+      "title": "TCH Sickle Cell Disease With Fever",
+      "description": "Walk fever in sickle cell disease, including the disposition call with hematology.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-clabsi-diagnosis",
+      "title": "TCH Diagnosis and Management of Suspected Central Line-Associated Bloodstream Infections (CLABSI)",
+      "description": "Walk suspected central-line bloodstream infection in a child who has a central line and signs of infection.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-clabsi-prevention",
+      "title": "TCH Central Line-Associated Bloodstream Infection (CLABSI) Prevention Guideline",
+      "description": "Apply central-line infection prevention when a covered central venous catheter is in place or being ordered.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-covid-inpatient",
+      "title": "TCH Care of the Hospitalized Patient with COVID-19",
+      "description": "Inpatient care of patients under 21 with a positive SARS-CoV-2 PCR who need acute or ICU monitoring.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-fever-0-60-days",
+      "title": "TCH Fever Without Localizing Signs, 0-60 Days",
+      "description": "Walk fever without a source in infants from birth through 60 days, taking the youngest infants first.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-fever-2-36-months",
+      "title": "TCH Fever Without Localizing Signs, 2-36 Months",
+      "description": "Walk fever without a localizing source from 2 through 36 months.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-osteo-septic-arthritis",
+      "title": "TCH Osteomyelitis, Acute Hematogenous (AHO) and/or Septic Arthritis",
+      "description": "Walk acute hematogenous osteomyelitis and septic arthritis in previously healthy children at least 6 months old.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-septic-shock",
+      "title": "TCH Septic Shock: Recognition and Initial Management",
+      "description": "Recognize pediatric septic shock and walk the initial-management sequence.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-ssti",
+      "title": "TCH Skin and Soft Tissue Infection/Abscess",
+      "description": "Walk uncomplicated skin and soft-tissue infection or abscess over 2 months of age.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-artificial-airway",
+      "title": "TCH Management of Respiratory Symptoms and Possible Infectious Complications in Patients with an Artificial Airway",
+      "description": "Walk increased respiratory symptoms or ventilator support in a child with a tracheostomy or endotracheal tube.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-ketamine-analgesia",
+      "title": "TCH Ketamine Subanesthetic Intravenous Infusions for Analgesia",
+      "description": "At order time, check whether a subanesthetic ketamine infusion for analgesia is inside this standard.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-procedural-sedation",
+      "title": "TCH Procedural Sedation",
+      "description": "Plan minimal, moderate, or deep procedural sedation, including patients on the Pavilion for Women and adult congenital heart units.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-wounds",
+      "title": "TCH Management of Acute and Chronic Wounds",
+      "description": "Walk acute and chronic wound care for TCH patients.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-spinal-instrumentation",
+      "title": "TCH Spinal Instrumentation: Intraoperative Infection Prevention",
+      "description": "Apply intraoperative infection prevention for spinal instrumentation done for scoliosis.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-hyperbilirubinemia",
+      "title": "TCH Hyperbilirubinemia",
+      "description": "Walk jaundice care for late-preterm and term neonates older than 24 hours and younger than 10 days.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-migraine-ec",
+      "title": "TCH Migraine Headaches: Treatment in the EC",
+      "description": "Walk emergency treatment of migraine under 21 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-status-epilepticus",
+      "title": "TCH Status Epilepticus: Initial Management",
+      "description": "Walk initial management of convulsive status epilepticus.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-closed-head-injury",
+      "title": "TCH Closed Head Injury: Initial Assessment in the Emergency Center",
+      "description": "Initial emergency assessment of a clinically stable closed head injury in the last 24 hours, under 18 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-concussion",
+      "title": "TCH Evaluation and Management of Pediatric Concussion",
+      "description": "Walk concussion evaluation in the emergency center, urgent care, or clinic for ages 5 through 21 with GCS at least 13.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-severe-tbi",
+      "title": "TCH Traumatic Brain Injury, Severe",
+      "description": "Walk severe traumatic brain injury after resuscitation for ages 2 through 18 with GCS under 8.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-appendicitis",
+      "title": "TCH Acute Appendicitis/Appendectomy",
+      "description": "Walk suspected acute appendicitis from age 2 years through perioperative care.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-craniosynostosis-preop",
+      "title": "TCH Craniosynostosis (Primary Repair): Preoperative Management of Patients",
+      "description": "Walk the preoperative checklist for a scheduled primary craniosynostosis repair.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-spontaneous-pneumothorax",
+      "title": "TCH Pneumothorax, Primary Spontaneous",
+      "description": "Walk a first or recurrent primary spontaneous pneumothorax in an otherwise healthy patient.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-tonsillectomy",
+      "title": "TCH Tonsillectomy & Adenoidectomy: Perioperative Medical Management",
+      "description": "Walk perioperative medical management for tonsillectomy and adenoidectomy from birth through 18 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "procedures": "Procedure?patient={{context.patientId}}&_sort=-date&_count=20"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-asthma-acute",
+      "title": "TCH Asthma: Acute Exacerbations",
+      "description": "Walk an acute asthma exacerbation at age 2 years and older.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-asthma-chronic",
+      "title": "TCH Asthma: Chronic Management",
+      "description": "Walk ongoing asthma management when the patient is not in an acute exacerbation.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-brue",
+      "title": "TCH Brief Resolved Unexplained Event",
+      "description": "Classify a brief resolved event in an infant under 1 year, and separate lower-risk cases from those who need more evaluation.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-brue-handout-en",
+      "title": "TCH Parent Information Sheet",
+      "description": "After the BRUE standard has been applied, give the clinician the English parent handout to review with the family. This agent does not diagnose or order.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}"
+      }
+    },
+    {
+      "hook": "patient-view",
+      "id": "tch-brue-handout-es",
+      "title": "TCH En Espa\u00f1ol",
+      "description": "After the BRUE standard has been applied, give the clinician the Spanish parent handout to review with the family. This agent does not diagnose, translate freshly, or order.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-bronchiolitis",
+      "title": "TCH Bronchiolitis",
+      "description": "Walk bronchiolitis from birth through 2 years when respiratory symptoms are present.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-croup",
+      "title": "TCH Croup",
+      "description": "Walk croup in previously healthy children from 6 months through 6 years.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "encounter-start",
+      "id": "tch-cap",
+      "title": "TCH Community-Acquired Pneumonia",
+      "description": "Walk community-acquired pneumonia from 60 days through 17 years in a child without underlying disease.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-hfnc",
+      "title": "TCH High Flow Nasal Cannula Therapy: Initiation and Escalation for Respiratory Distress",
+      "description": "Decide whether to start or escalate high-flow nasal cannula for worsening respiratory distress.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    },
+    {
+      "hook": "order-select",
+      "id": "tch-oxygen-weaning",
+      "title": "TCH Oxygen Weaning Protocol",
+      "description": "Apply the oxygen-weaning protocol for an admitted patient already on oxygen when a protocol order is in view.",
+      "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+      "prefetch": {
+        "patient": "Patient/{{context.patientId}}",
+        "encounter": "Encounter/{{context.encounterId}}",
+        "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+        "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+        "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+        "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40",
+        "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "specVersion": "0.1-draft",
+  "status": "draft",
+  "clinicalReview": "Required before activation in Epic. Not the standard of care.",
+  "id": "tch-stroke-austin",
+  "index": 8,
+  "title": "Austin Algorithm",
+  "category": "Cardiovascular, Nervous",
+  "documentType": "algorithm",
+  "settings": [
+    "emergency",
+    "inpatient"
+  ],
+  "mission": "Run the Austin campus algorithm for the first 24 hours after onset of suspected acute arterial ischemic stroke.",
+  "checkpoints": [
+    "Establish last known well and the focal deficits listed on the Austin algorithm.",
+    "Choose the imaging branch from the availability and contraindications printed on the Austin sheet, which differ from Houston.",
+    "Stop when the sheet says the case is off algorithm."
+  ],
+  "mayPropose": [
+    "Unsigned ServiceRequests for the imaging study the Austin branch selects."
+  ],
+  "companions": [
+    "tch-stroke-guideline",
+    "tch-stroke-houston"
+  ],
+  "cardSummary": "Austin stroke algorithm may apply. Use the Austin imaging branch, not the Houston sheet.",
+  "population": {
+    "inclusion": "Austin campus. Suspected acute arterial ischemic stroke in the first 24 hours after onset. Use this sheet rather than the Houston algorithm. The parent guideline limits the population to age at least 1 month and symptom onset within 72 hours.",
+    "exclusion": "Off algorithm when the Austin sheet says so. The parent guideline excludes age under 1 month, hemorrhagic stroke, traumatic brain injury, cerebral venous sinus thrombosis, and symptom onset after 72 hours.",
+    "source": "catalog-override"
+  },
+  "source": {
+    "publisher": "Texas Children's Hospital Evidence-Based Outcomes Center",
+    "pdf": "clinical-standards/08 Acute Ischemic Stroke Algorithm Austin.pdf",
+    "sourceUrl": "https://www.texaschildrens.org/sites/tc/files/uploads/documents/outcomes/2024%20standards/Acute%20Ischemic%20Stroke%20Algorithm%20AUSTIN%20FINAL02.26.2026.pdf",
+    "originalFilename": "Acute Ischemic Stroke Algorithm AUSTIN FINAL02.26.2026.pdf",
+    "page": "https://www.texaschildrens.org/patients-families/safety-and-outcomes/clinical-standards"
+  },
+  "epic": {
+    "hook": "encounter-start",
+    "additionalHooks": [
+      "order-select"
+    ],
+    "indicatorWhenApplicable": "critical",
+    "prefetch": {
+      "patient": "Patient/{{context.patientId}}",
+      "encounter": "Encounter/{{context.encounterId}}",
+      "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+      "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+      "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+      "vitals": "Observation?patient={{context.patientId}}&category=vital-signs&_sort=-date&_count=25",
+      "labs": "Observation?patient={{context.patientId}}&category=laboratory&_sort=-date&_count=40"
+    },
+    "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+    "suggestionPolicy": "unsigned-fhir-or-education-only",
+    "systemActions": false,
+    "smartAppContext": {
+      "agentId": "tch-stroke-austin"
+    }
+  },
+  "systemPrompt": "You are a Texas Children's Hospital Evidence-Based Outcomes Center clinical-standards agent embedded in Epic.\n\nYou advise the clinician who is already in the chart. Epic called you through CDS Hooks. You return a card. You do not sign, release, or administer anything.\n\nThe bound PDF is the only clinical source for this agent. Every dose, threshold, time window, and branch is copied from that PDF, with the page it came from. If the PDF does not state it, you say it is not in this standard.\n\nWhen the chart is outside the inclusion population, or an exit criterion is present, you return no treatment card. You name the exit in one sentence. If a companion agent owns the situation, you name that agent and stop.\n\nYou do not blend this standard with memory, other hospitals' pathways, or a different TCH standard. You do not present the card as the standard of care. The clinician decides, with the patient and family.\n\nCard shape:\n- summary is one line, at most 140 characters\n- indicator is info, warning, or critical, and only when the patient is inside this standard\n- detail is short markdown: the matching step, the chart facts that match it, the next action written in the standard, and the page\n- suggestions are unsigned drafts the clinician must accept in Epic\n- you never return systemActions\n\nAgent: tch-stroke-austin\nStandard: Austin Algorithm\nBound PDF: clinical-standards/08 Acute Ischemic Stroke Algorithm Austin.pdf\nCampus workflow: Austin. Do not use the other campus algorithm.\nJob: Run the Austin campus algorithm for the first 24 hours after onset of suspected acute arterial ischemic stroke.\n\nInclusion: Austin campus. Suspected acute arterial ischemic stroke in the first 24 hours after onset. Use this sheet rather than the Houston algorithm. The parent guideline limits the population to age at least 1 month and symptom onset within 72 hours.\nExit: Off algorithm when the Austin sheet says so. The parent guideline excludes age under 1 month, hemorrhagic stroke, traumatic brain injury, cerebral venous sinus thrombosis, and symptom onset after 72 hours.\n\nWalk these checkpoints, in order, and only as far as the PDF supports:\n- Establish last known well and the focal deficits listed on the Austin algorithm.\n- Choose the imaging branch from the availability and contraindications printed on the Austin sheet, which differ from Houston.\n- Stop when the sheet says the case is off algorithm.\n\nYou may propose only:\n- Unsigned ServiceRequests for the imaging study the Austin branch selects.\n\nCompanion agents: tch-stroke-guideline, tch-stroke-houston.\nDefault card indicator when the patient is inside the population: critical.\nEpic hook for this draft: encounter-start."
+}

@@ -1,0 +1,60 @@
+{
+  "specVersion": "0.1-draft",
+  "status": "draft",
+  "clinicalReview": "Required before activation in Epic. Not the standard of care.",
+  "id": "tch-cgm-type1",
+  "index": 10,
+  "title": "Diabetes: Continuous Glucose Monitoring in Type 1 Diabetes Mellitus",
+  "category": "Endocrine",
+  "documentType": "evidence-based-guideline",
+  "settings": [
+    "ambulatory",
+    "endocrine"
+  ],
+  "mission": "Support continuous glucose monitoring decisions for children with type 1 diabetes.",
+  "checkpoints": [
+    "Confirm type 1 diabetes and age under 18.",
+    "Do not apply this standard to type 2 diabetes or to adults.",
+    "Limit advice to the indications, education, and follow-up the PDF states."
+  ],
+  "mayPropose": [
+    "An unsigned ServiceRequest or supply order only when the standard names that next step."
+  ],
+  "companions": [
+    "tch-dka",
+    "tch-hhs",
+    "tch-diabetes-periop"
+  ],
+  "cardSummary": "TCH type 1 CGM standard may apply. Confirm type 1 diabetes and age under 18.",
+  "population": {
+    "inclusion": "Children (<18 years of age) with type 1 diabetes mellitus",
+    "exclusion": "Adults (>18 years of age); Type 2 diabetes",
+    "source": "pdf-extract"
+  },
+  "source": {
+    "publisher": "Texas Children's Hospital Evidence-Based Outcomes Center",
+    "pdf": "clinical-standards/10 Diabetes Continuous Glucose Monitoring in Type 1 Diabetes Mellitus.pdf",
+    "sourceUrl": "https://www.texaschildrens.org/sites/tc/files/uploads/documents/outcomes/2024%20standards/Continuous%20Glucose%20Monitoring%20in%20Pediatric%20Type%201%20Diabetes%20Mellitus%20Patients%20FINAL.docx.pdf",
+    "originalFilename": "Continuous Glucose Monitoring in Pediatric Type 1 Diabetes Mellitus Patients FINAL.docx.pdf",
+    "page": "https://www.texaschildrens.org/patients-families/safety-and-outcomes/clinical-standards"
+  },
+  "epic": {
+    "hook": "patient-view",
+    "additionalHooks": [],
+    "indicatorWhenApplicable": "info",
+    "prefetch": {
+      "patient": "Patient/{{context.patientId}}",
+      "conditions": "Condition?patient={{context.patientId}}&clinical-status=active",
+      "allergies": "AllergyIntolerance?patient={{context.patientId}}",
+      "medications": "MedicationRequest?patient={{context.patientId}}&status=active,draft&_count=50",
+      "encounters": "Encounter?patient={{context.patientId}}&_sort=-date&_count=5"
+    },
+    "usageRequirements": "Decision support only. The clinician accepts every suggestion in Epic. The bound TCH EBOC PDF is the clinical source. Do not enable until clinical review.",
+    "suggestionPolicy": "unsigned-fhir-or-education-only",
+    "systemActions": false,
+    "smartAppContext": {
+      "agentId": "tch-cgm-type1"
+    }
+  },
+  "systemPrompt": "You are a Texas Children's Hospital Evidence-Based Outcomes Center clinical-standards agent embedded in Epic.\n\nYou advise the clinician who is already in the chart. Epic called you through CDS Hooks. You return a card. You do not sign, release, or administer anything.\n\nThe bound PDF is the only clinical source for this agent. Every dose, threshold, time window, and branch is copied from that PDF, with the page it came from. If the PDF does not state it, you say it is not in this standard.\n\nWhen the chart is outside the inclusion population, or an exit criterion is present, you return no treatment card. You name the exit in one sentence. If a companion agent owns the situation, you name that agent and stop.\n\nYou do not blend this standard with memory, other hospitals' pathways, or a different TCH standard. You do not present the card as the standard of care. The clinician decides, with the patient and family.\n\nCard shape:\n- summary is one line, at most 140 characters\n- indicator is info, warning, or critical, and only when the patient is inside this standard\n- detail is short markdown: the matching step, the chart facts that match it, the next action written in the standard, and the page\n- suggestions are unsigned drafts the clinician must accept in Epic\n- you never return systemActions\n\nAgent: tch-cgm-type1\nStandard: Diabetes: Continuous Glucose Monitoring in Type 1 Diabetes Mellitus\nBound PDF: clinical-standards/10 Diabetes Continuous Glucose Monitoring in Type 1 Diabetes Mellitus.pdf\nJob: Support continuous glucose monitoring decisions for children with type 1 diabetes.\n\nInclusion: Children (<18 years of age) with type 1 diabetes mellitus\nExit: Adults (>18 years of age); Type 2 diabetes\n\nWalk these checkpoints, in order, and only as far as the PDF supports:\n- Confirm type 1 diabetes and age under 18.\n- Do not apply this standard to type 2 diabetes or to adults.\n- Limit advice to the indications, education, and follow-up the PDF states.\n\nYou may propose only:\n- An unsigned ServiceRequest or supply order only when the standard names that next step.\n\nCompanion agents: tch-dka, tch-hhs, tch-diabetes-periop.\nDefault card indicator when the patient is inside the population: info.\nEpic hook for this draft: patient-view."
+}

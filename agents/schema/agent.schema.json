@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://texaschildrens.org/draft/eboc-epic-agent.schema.json",
+  "title": "TCH EBOC Epic agent",
+  "type": "object",
+  "required": [
+    "specVersion",
+    "status",
+    "id",
+    "title",
+    "source",
+    "epic",
+    "population",
+    "systemPrompt",
+    "cardSummary"
+  ],
+  "properties": {
+    "specVersion": { "const": "0.1-draft" },
+    "status": { "const": "draft" },
+    "id": { "type": "string", "pattern": "^tch-[a-z0-9-]+$" },
+    "epic": {
+      "type": "object",
+      "required": ["hook", "prefetch", "systemActions", "indicatorWhenApplicable"],
+      "properties": {
+        "hook": {
+          "enum": [
+            "patient-view",
+            "encounter-start",
+            "encounter-discharge",
+            "order-select",
+            "order-sign",
+            "appointment-book"
+          ]
+        },
+        "indicatorWhenApplicable": { "enum": ["info", "warning", "critical"] },
+        "systemActions": { "const": false },
+        "prefetch": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "cardSummary": { "type": "string", "maxLength": 140 }
+  }
+}
